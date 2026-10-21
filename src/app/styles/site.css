@@ -1,0 +1,317 @@
+:root {
+  --site-width: 1100px;
+  --blue: #2079b7;
+  --text: #111;
+  --yellow: #ffc744;
+  --coral: #f26455;
+  --slate: #5b617f;
+  --green: #269979;
+  --footer: #3d3d3d;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  --locked-header-height: 116px;
+  margin: 0;
+  color: var(--text);
+  background: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.2;
+}
+body:has(> [data-site-header]) { padding-top: var(--locked-header-height); }
+a { color: inherit; }
+button, input { font: inherit; }
+svg { display: block; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2; }
+.site-width { width: min(calc(100% - 32px), var(--site-width)); margin-inline: auto; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+.skip-link { position: fixed; top: 8px; left: 8px; z-index: 1100; padding: 9px 14px; background: #fff; transform: translateY(-150%); }
+.skip-link:focus { transform: translateY(0); }
+
+[data-site-header] { position: fixed; inset: 0 0 auto; z-index: 1000; width: 100%; height: var(--locked-header-height); background: #fff; }
+.site-header { position: relative; z-index: 10; background: #fff; box-shadow: 0 5px 7px rgba(0,0,0,.2); }
+.header-top { height: 70px; display: grid; grid-template-columns: 180px 1fr 425px; align-items: center; border-bottom: 1px solid #e5e5e5; }
+.government-brand { width: 90px; height: 68px; display: flex; align-items: center; justify-content: center; text-decoration: none; }
+.government-brand img { display: block; width: 62px; height: 62px; object-fit: contain; }
+.platform-name { padding-left: 35px; font-size: 14px; }
+.header-actions { display: flex; align-items: center; justify-content: flex-end; gap: 24px; }
+.header-actions > a { color: #096bb4; text-decoration: none; font-size: 13px; }
+.header-actions > a:hover { text-decoration: underline; }
+.top-search { width: 260px; height: 36px; display: grid; grid-template-columns: 1fr 38px; border: 1px solid #c9c9c9; border-radius: 4px; background: #fff; }
+.top-search input { min-width: 0; padding: 0 12px; border: 0; outline: none; color: #333; }
+.top-search input::placeholder { color: #999; }
+.top-search button { display: grid; place-items: center; padding: 0; border: 0; background: transparent; color: #777; cursor: pointer; }
+.top-search button svg { width: 18px; }
+.menu-toggle { display: none; width: 40px; height: 36px; padding: 7px; border: 1px solid #c9c9c9; background: #fff; }
+.menu-toggle span:not(.sr-only) { display: block; height: 2px; margin: 4px 0; background: var(--blue); }
+
+.main-nav { background: #fff; }
+.nav-inner { height: 46px; display: grid; grid-template-columns: repeat(5, 1fr); }
+.nav-link { position: relative; display: flex; align-items: center; justify-content: center; gap: 12px; color: #096bb4; text-decoration: none; }
+.nav-link svg { width: 22px; height: 22px; color: #2b7db8; }
+.nav-link.active::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background: #2b7db8; }
+
+.home-stack { padding-top: 24px; }
+.welcome-panel { position: relative; height: 300px; overflow: hidden; background: var(--yellow); }
+.welcome-panel h1 { position: relative; z-index: 2; margin: 0; padding-top: 29px; color: #fff; text-align: center; font-size: 30px; font-weight: 400; line-height: 1.2; }
+.apply-button { position: absolute; z-index: 3; top: 135px; left: 50%; min-width: 165px; height: 40px; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-weight: 700; border-radius: 4px; background: #187fbd; transform: translateX(-50%); }
+.apply-button:hover, .licensing-search button:hover { background: #116da5; }
+.licensing-search { position: absolute; z-index: 3; left: 50%; bottom: 26px; width: 523px; height: 40px; display: grid; grid-template-columns: 1fr 104px; transform: translateX(-50%); }
+.licensing-search input { min-width: 0; padding: 0 13px; color: #333; border: 1px solid #bbb; border-right: 0; border-radius: 4px 0 0 4px; outline: none; }
+.licensing-search input:focus { box-shadow: inset 0 0 0 1px #2b7db8; }
+.licensing-search button { color: #fff; border: 0; border-radius: 0 4px 4px 0; background: #187fbd; font-weight: 700; cursor: pointer; }
+.search-message { position: absolute; top: 43px; left: 0; margin: 0; color: #fff; font-size: 11px; }
+.mountains { position: absolute; inset: 0; }
+.mountain { position: absolute; bottom: -1px; display: block; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.m1 { left: 142px; width: 520px; height: 270px; background: rgba(255,255,255,.48); }
+.m2 { left: 475px; width: 235px; height: 190px; background: rgba(255,255,255,.32); }
+.m3 { left: 620px; width: 275px; height: 155px; background: rgba(255,255,255,.44); }
+.m4 { right: 60px; width: 260px; height: 120px; background: rgba(255,255,255,.25); }
+
+.banner-photo { position: relative; height: 300px; margin-top: 15px; overflow: hidden; background: #111; }
+.banner-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.banner-photo h2 { position: absolute; top: 10px; left: 54px; margin: 0; color: #fff; font-size: 20px; font-weight: 400; text-shadow: 0 1px 2px #000; }
+
+.home-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 15px; }
+.home-card { height: 250px; display: block; padding: 15px 20px; color: #fff; text-decoration: none; }
+.home-card:hover { filter: brightness(.96); }
+.home-card h2 { margin: 0 0 13px; font-size: 25px; font-weight: 400; }
+.home-card p { margin: 0 0 24px; font-size: 12px; }
+.home-card .strong { font-weight: 700; }
+.home-card .strong span { margin-left: 6px; color: red; }
+.agencies { background: var(--coral); }
+.permits { background: var(--slate); }
+.news { background: var(--yellow); }
+.notices { background: var(--green); }
+
+.footer-wrap { padding: 44px 0 0; }
+.site-footer { min-height: 260px; padding: 24px 22px 18px; color: #b7b7b7; background: var(--footer); }
+.footer-content { display: grid; grid-template-columns: 150px 1.35fr 1fr 1.05fr .85fr 1.2fr; gap: 30px; min-height: 132px; }
+.certification-logo { display: flex; align-items: flex-start; justify-content: center; }
+.certification-logo img { width: 92px; height: auto; max-height: 112px; object-fit: contain; }
+.footer-column h2 { margin: 0 0 9px; font-size: 18px; font-weight: 400; }
+.footer-column a { display: block; width: fit-content; color: #b7b7b7; text-decoration: none; font-size: 14px; line-height: 1.05; }
+.footer-column a:hover { color: #fff; text-decoration: underline; }
+.footer-bottom { margin-top: 8px; }
+.helpdesk { margin: 0; font-size: 18px; line-height: .9; }
+.helpdesk a { color: #b7b7b7; font-size: 14px; font-weight: 700; text-decoration: none; }
+.security-notice { margin: 6px 0 0; padding-top: 7px; color: #fff; border-top: 1px solid #ed2d2d; font-size: 11px; font-weight: 700; line-height: 1.25; }
+.security-notice a { color: #fff; }
+
+/* Licensing page */
+.licensing-main { min-height: 572px; padding-top: 42px; }
+.licensing-toolbar { display: grid; grid-template-columns: 372px 225px; align-items: center; min-height: 42px; }
+.licensing-toolbar h1 { margin: 0; font-family: "Segoe UI Light", "Segoe UI", Arial, sans-serif; font-size: 34px; font-weight: 300; line-height: 1; }
+.view-tabs { display: grid; grid-template-columns: 1fr 1fr; width: 225px; height: 40px; }
+.view-tabs button { color: #096bb4; border: 1px solid #096fba; background: #fff; cursor: pointer; }
+.view-tabs button:first-child { border-radius: 4px 0 0 4px; }
+.view-tabs button:last-child { margin-left: -1px; border-radius: 0 4px 4px 0; }
+.view-tabs button[aria-selected="true"] { color: #fff; background: #207db8; font-weight: 700; }
+.permit-groups { margin-top: 24px; }
+.permit-group { border-bottom: 1px solid transparent; }
+.permit-group.open { margin-bottom: 18px; padding-bottom: 18px; border-bottom-color: #1b1b1b; }
+.permit-group-toggle { width: 100%; min-height: 30px; display: flex; align-items: center; gap: 11px; padding: 0; color: #146db3; border: 0; background: transparent; text-align: left; font-weight: 700; cursor: pointer; }
+.permit-group-toggle::before { content: ""; width: 0; height: 0; flex: 0 0 auto; border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-left: 7px solid #000; transform-origin: center; }
+.permit-group-toggle[aria-expanded="true"]::before { transform: rotate(90deg); }
+.permit-list { width: 438px; padding: 8px 0 1px; }
+.permit-row { min-height: 44px; display: grid; grid-template-columns: 310px 110px; align-items: start; gap: 16px; }
+.permit-copy { padding-top: 1px; }
+.permit-copy strong { display: block; margin-bottom: 2px; color: #000; font-size: 12px; line-height: 1.2; }
+.permit-copy a { display: block; width: fit-content; color: #0870bc; text-decoration: none; font-size: 12px; line-height: 1.4; }
+.permit-copy a:hover { text-decoration: underline; }
+.permit-apply { min-height: 31px; display: flex; align-items: center; justify-content: center; color: #0870bc; text-decoration: none; border: 1px solid #087bd0; border-radius: 4px; font-size: 12px; }
+.permit-apply:hover { color: #fff; background: #087bd0; }
+.licensing-footer { padding-top: 0; }
+
+/* Shared inner pages */
+.inner-page-footer { padding-top: 0; }
+.account-main h1, .simple-main h1, .permit-search-main h1, .faq-section h1, .notice-list h1 { margin: 0; }
+.field { margin-bottom: 16px; }
+.field label { display: block; margin: 0 0 7px; font-weight: 700; }
+.field input, .field select { width: 100%; height: 35px; padding: 0 14px; color: #333; border: 1px solid #c8c8c8; border-radius: 4px; background: #fff; outline: none; }
+.field input:focus, .field select:focus { border-color: #287cba; box-shadow: 0 0 0 2px rgba(40,124,186,.1); }
+.secondary-action, .primary-action { min-width: 100px; height: 35px; display: inline-flex; align-items: center; justify-content: center; color: #2876b4; text-decoration: none; border: 1px solid #2876b4; border-radius: 4px; background: #fff; cursor: pointer; }
+.primary-action { color: #fff; background: #2a7fb9; font-weight: 700; }
+.secondary-action:disabled { color: #84b0d1; border-color: #84b0d1; cursor: not-allowed; }
+.form-status { min-height: 16px; margin: 5px 0; color: #1b6da7; font-size: 12px; }
+
+.account-main { position: relative; }
+.register-main { min-height: 835px; padding: 42px 0 40px; }
+.account-main > h1 { font-size: 36px; font-weight: 600; }
+.register-copy { width: 745px; margin-top: 34px; line-height: 1.35; }
+.register-copy p { margin: 0 0 11px; }
+.register-form { width: 550px; margin: 28px 0 0 5px; }
+.phone-input { display: grid; grid-template-columns: 89px 264px; gap: 4px; }
+.phone-input input { min-width: 0; }
+.account-actions-row { position: absolute; right: 0; bottom: 45px; display: flex; gap: 18px; }
+
+.login-main { min-height: 578px; padding: 21px 0 0 115px; }
+.login-title { color: #4d78c6; font-family: "Segoe UI Light", "Segoe UI", Arial, sans-serif; font-size: 40px !important; font-weight: 300 !important; }
+.login-form { position: relative; width: 880px; margin-top: 32px; }
+.login-form > .field { width: 292px; margin-bottom: 22px; }
+.login-form .field label { color: #554039; font-weight: 400; }
+.password-field > div { position: relative; }
+.password-field button { position: absolute; top: 0; right: 0; width: 40px; height: 35px; color: #bbb; border: 0; background: transparent; cursor: pointer; }
+.login-form > a { display: block; width: fit-content; margin-bottom: 6px; color: #176db2; text-decoration: none; font-size: 12px; }
+.login-actions { position: absolute; top: 196px; right: 0; display: flex; gap: 17px; }
+.login-actions span { margin-left: 4px; font-size: 17px; }
+
+.simple-main { min-height: 578px; padding: 70px 0 0 25px; }
+.simple-main section { margin-bottom: 35px; }
+.simple-main h1 { margin-bottom: 14px; font-size: 22px; }
+.simple-main p { margin: 0 0 8px; }
+.simple-main a, .notice-list > a { color: #0870bc; text-underline-offset: 2px; }
+.pagination { display: flex; margin-top: 16px; }
+.pagination > * { min-width: 34px; height: 31px; display: grid; place-items: center; padding: 0 12px; color: #000; text-decoration: none; border: 1px solid #d5d5d5; background: #fff; }
+.pagination > * + * { margin-left: -1px; }
+.pagination > :first-child { border-radius: 4px 0 0 4px; }
+.pagination > :last-child { border-radius: 0 4px 4px 0; }
+.pagination span { color: #777; }
+
+.permit-search-main { min-height: 578px; padding: 16px 0 0 25px; }
+.permit-search-main h1 { font-size: 20px; }
+.permit-lookup { display: grid; grid-template-columns: repeat(3, 302px); gap: 18px; margin: 26px 0 0 15px; }
+.permit-lookup .field label { font-size: 10px; font-weight: 400; }
+.lookup-submit { grid-column: 1; width: 75px; min-width: 75px; margin-top: 24px; }
+.permit-lookup .form-status { grid-column: 1 / -1; }
+.permit-search-results { margin: 25px 10px 55px 5px; scroll-margin-top: 20px; }
+.showing-permit-result { padding-top: 29px; }
+.showing-permit-result > h1, .showing-permit-result > .permit-lookup { display: none; }
+.showing-permit-result .permit-search-results { margin: 0 10px 76px 5px; }
+.public-permit-card { max-height: 430px; overflow: auto; border: 1px solid #d2d2d2; border-radius: 4px; background: #fff; color: #111; font-size: 13px; scrollbar-color: #929292 #f4f4f4; scrollbar-width: thin; }
+.public-permit-card > header { padding: 13px 20px 20px; border-bottom: 1px solid #d5d5d5; background: #f2f2f2; }
+.public-permit-card h2 { margin: 0 0 18px; text-align: center; font-size: 14px; }
+.public-permit-card header > div { display: flex; justify-content: space-between; gap: 25px; }
+.public-permit-status.active { color: #039725; }
+.public-permit-status.pending { color: #9b7210; }
+.public-permit-status.expired, .public-permit-status.cancelled { color: #a53939; }
+.public-permit-body { padding: 16px 20px 20px; }
+.public-permit-identity { display: grid; grid-template-columns: 185px 126px; align-items: center; gap: 15px; margin-bottom: 12px; }
+.public-permit-identity img { width: 126px; height: 126px; object-fit: cover; }
+.public-permit-identity > div > div, .public-permit-details > div { margin-bottom: 5px; }
+.public-permit-paired { display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.public-permit-paired > div { margin: 0; }
+.public-permit-conditions { margin: 20px 0 0 11px; }
+.public-permit-conditions ol { margin: 6px 0 0; padding-left: 18px; line-height: 1.45; }
+
+.faq-main { min-height: 578px; padding-top: 43px; }
+.faq-toolbar { display: grid; grid-template-columns: 1fr 350px; align-items: center; margin-bottom: 20px; }
+.faq-toolbar > a { justify-self: end; color: #0870bc; }
+.faq-tabs { justify-self: end; width: 351px; display: grid; grid-template-columns: 92px 148px 110px; }
+.faq-tabs button { height: 40px; margin-left: -1px; color: #0870bc; border: 1px solid #0870bc; background: #fff; cursor: pointer; }
+.faq-tabs button:first-child { margin-left: 0; border-radius: 4px 0 0 4px; }
+.faq-tabs button:last-child { border-radius: 0 4px 4px 0; }
+.faq-tabs button[aria-selected="true"] { color: #fff; background: #257fb9; font-weight: 700; }
+.faq-section h1 { margin: 0 0 8px; font-size: 22px; }
+.faq-accordion { display: grid; gap: 20px; }
+.faq-item { overflow: hidden; border: 1px solid #d3d3d3; border-radius: 4px; }
+.faq-item > button { width: 100%; min-height: 40px; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; color: #1471ba; border: 0; background: #f3f3f3; text-align: left; font-weight: 700; cursor: pointer; }
+.faq-item > button span { width: 10px; height: 10px; border-right: 3px solid #2a7fb9; border-bottom: 3px solid #2a7fb9; transform: rotate(45deg); }
+.faq-item > button[aria-expanded="true"] span { transform: rotate(225deg); }
+.faq-answer { min-height: 66px; padding: 25px 15px; border-top: 1px solid #d3d3d3; font-size: 12px; }
+.notice-list { padding: 28px 0 0 12px; }
+.notice-list h1 { margin-bottom: 2px; font-size: 22px; }
+.notice-list p { margin: 0 0 26px; font-size: 12px; }
+
+.activation-main { min-height: 568px; padding-top: 36px; }
+.activation-main h1 { margin: 0; font-size: 36px; font-weight: 600; }
+.activation-copy { width: 770px; margin-top: 34px; line-height: 1.4; }
+.activation-copy p { margin: 0 0 11px; }
+.activation-copy a { color: #0870bc; text-decoration: none; }
+.activation-copy a:hover { text-decoration: underline; }
+.activation-copy [data-activation-email] { font-weight: 400; }
+
+.legal-main { min-height: 724px; padding: 16px 12px 34px; }
+.legal-main h1 { margin: 0 0 16px; font-size: 24px; line-height: 1.2; }
+.legal-main section { margin: 0; }
+.legal-main h2 { margin: 0 0 15px; font-size: 16px; line-height: 1.2; }
+.legal-main p { max-width: 1105px; margin: 0 0 15px; line-height: 1.2; }
+.legal-main a { color: #0870bc; }
+.terms-main { padding-top: 11px; }
+.terms-list { margin: 0; padding-left: 40px; list-style-type: upper-roman; }
+.terms-list li { max-width: 1090px; margin-bottom: 25px; padding-left: 2px; line-height: 1.45; }
+
+@media (max-width: 900px) {
+  .header-top { grid-template-columns: 100px 1fr auto; }
+  .platform-name { padding-left: 0; }
+  .top-search { display: none; }
+  .home-stack { padding-top: 24px; }
+  .welcome-panel h1 { padding-inline: 24px; font-size: 25px; }
+  .home-cards { grid-template-columns: repeat(2, 1fr); }
+  .footer-content { grid-template-columns: 120px repeat(3, 1fr); }
+  .licensing-toolbar { grid-template-columns: 1fr auto; }
+  .register-copy { width: min(100%, 745px); }
+  .login-form { width: calc(100% - 40px); }
+  .permit-lookup { grid-template-columns: repeat(3, 1fr); margin-left: 0; }
+}
+
+@media (max-width: 640px) {
+  body { --locked-header-height: 76px; }
+  .site-width { width: min(calc(100% - 20px), var(--site-width)); }
+  .header-top { height: 76px; grid-template-columns: 70px 1fr auto; }
+  .government-brand { width: 60px; height: 62px; }
+  .government-brand img { width: 58px; height: 58px; }
+  .platform-name { font-size: 12px; text-align: center; }
+  .header-actions > a { display: none; }
+  .menu-toggle { display: block; }
+  .main-nav { display: none; }
+  .main-nav.open { display: block; }
+  .nav-inner { width: 100%; height: auto; grid-template-columns: 1fr; padding: 6px 10px 12px; }
+  .nav-link { min-height: 45px; justify-content: flex-start; padding: 0 16px; }
+  .nav-link.active::after { inset: 5px auto 5px 0; width: 4px; height: auto; }
+  .home-stack { padding-top: 20px; }
+  .welcome-panel { height: 330px; }
+  .welcome-panel h1 { padding-top: 28px; font-size: 24px; }
+  .apply-button { top: 150px; }
+  .licensing-search { bottom: 28px; width: calc(100% - 30px); grid-template-columns: 1fr 88px; }
+  .m1 { left: -110px; }
+  .m2 { left: 120px; }
+  .m3 { left: 215px; }
+  .banner-photo { height: 240px; }
+  .banner-photo h2 { left: 20px; right: 20px; font-size: 17px; }
+  .home-cards { grid-template-columns: 1fr; }
+  .home-card { height: 190px; }
+  .footer-wrap { padding-top: 25px; }
+  .footer-content { grid-template-columns: repeat(2, 1fr); gap: 24px 18px; }
+  .certification-logo { grid-column: 1 / -1; justify-content: flex-start; }
+  .licensing-main { min-height: 520px; padding-top: 30px; }
+  .licensing-toolbar { grid-template-columns: 1fr; gap: 24px; }
+  .view-tabs { width: 100%; }
+  .permit-groups { margin-top: 24px; }
+  .permit-list { width: 100%; }
+  .permit-row { grid-template-columns: minmax(0, 1fr) 92px; gap: 12px; }
+  .register-main { min-height: 0; }
+  .register-form { width: 100%; margin-left: 0; }
+  .phone-input { grid-template-columns: 85px 1fr; }
+  .account-actions-row { position: static; justify-content: flex-end; margin-top: 25px; }
+  .login-main { min-height: 520px; padding: 28px 0; }
+  .login-form { width: 100%; }
+  .login-form > .field { width: 100%; }
+  .login-actions { position: static; justify-content: flex-end; margin-top: 28px; }
+  .simple-main, .permit-search-main { min-height: 520px; padding: 40px 5px; }
+  .permit-lookup { grid-template-columns: 1fr; }
+  .lookup-submit, .permit-lookup .form-status { grid-column: 1; }
+  .public-permit-card header > div { display: grid; }
+  .showing-permit-result { padding-top: 18px; }
+  .showing-permit-result .permit-search-results { margin: 0 0 45px; }
+  .public-permit-identity { grid-template-columns: 1fr 90px; }
+  .public-permit-identity img { width: 90px; height: 105px; }
+  .public-permit-card { max-height: none; overflow: visible; }
+  .public-permit-body { padding: 16px; }
+  .faq-main { min-height: 520px; padding-top: 30px; }
+  .faq-toolbar { grid-template-columns: 1fr; gap: 18px; }
+  .faq-tabs { justify-self: stretch; width: 100%; grid-template-columns: repeat(3, 1fr); }
+  .faq-toolbar > a { justify-self: start; }
+  .activation-main { min-height: 520px; padding-top: 30px; }
+  .activation-copy { width: 100%; }
+  .legal-main { min-height: 520px; padding: 30px 5px; }
+  .terms-list { padding-left: 28px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
