@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { searchPermitAction } from "@/lib/actions/public";
-import { PublicPermitCard } from "@/components/PermitCard";
+import { PermitNotFoundPanel, PublicPermitCard } from "@/components/PermitCard";
 import type { PublicPermit } from "@/lib/types";
 
 export function PublicPermitSearch({
@@ -21,7 +21,6 @@ export function PublicPermitSearch({
   const [status, setStatus] = useState("");
   const [error, setError] = useState("");
   const [result, setResult] = useState<PublicPermit | null>(null);
-  const [photoUrl, setPhotoUrl] = useState<string | null>(null);
   const [searched, setSearched] = useState(false);
   const didAuto = useRef(false);
 
@@ -30,7 +29,6 @@ export function PublicPermitSearch({
     setError("");
     setStatus("");
     setResult(null);
-    setPhotoUrl(null);
 
     const response = await searchPermitAction({
       permitNumber: number,
@@ -49,7 +47,6 @@ export function PublicPermitSearch({
       return;
     }
     setResult(response.permit);
-    setPhotoUrl(response.photoUrl ?? null);
 
     if (typeof document !== "undefined") {
       requestAnimationFrame(() =>
@@ -136,11 +133,11 @@ export function PublicPermitSearch({
         {result && (
           <>
             <h2 className="sr-only">Permit result</h2>
-            <PublicPermitCard permit={result} photoUrl={photoUrl} />
+            <PublicPermitCard permit={result} />
           </>
         )}
         {searched && !result && !error && (
-          <p style={{ color: "#666" }}>No public permit record was found for the details provided.</p>
+          <PermitNotFoundPanel />
         )}
       </section>
     </div>

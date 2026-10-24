@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
-import { publicPhotoUrl } from "@/lib/storage";
 import { PublicPermitCard } from "@/components/PermitCard";
 import type { PublicPermit } from "@/lib/types";
 
@@ -49,7 +48,7 @@ export default async function PublicPermitRecordPage({
       <h1>Public permit record</h1>
       {permit ? (
         <section className="permit-search-results showing">
-          <PublicPermitCard permit={permit} photoUrl={publicPhotoUrl(permit.photo_path)} showPermalink={false} />
+          <PublicPermitCard permit={permit} />
         </section>
       ) : (
         <article className="verify-not-found">

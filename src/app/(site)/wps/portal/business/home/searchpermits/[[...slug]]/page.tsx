@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PublicPermitSearch } from "@/components/PublicPermitSearch";
 
 export const metadata: Metadata = {
-  title: "Search Permits",
+  title: { absolute: "Search Permits" },
   description: "Search and verify permits issued in Mauritius.",
 };
 

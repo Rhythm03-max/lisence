@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
+import { Roboto } from "next/font/google";
 import "@/app/globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { getCurrentProfile } from "@/lib/auth";
 import type { Profile } from "@/lib/types";
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["300", "400", "700"],
+  display: "swap",
+  variable: "--font-roboto",
+});
 
 export const dynamic = "force-dynamic";
 
@@ -25,7 +33,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
   }
 
   return (
-    <html lang="en">
+    <html lang="en" className={roboto.variable}>
       <body>
         <a className="skip-link" href="#main-content">Skip to main content</a>
         <SiteHeader profile={profile} />

@@ -37,6 +37,8 @@ export interface PublicPermit {
   first_name: string;
   nationality: string | null;
   gender: string | null;
+  passport_number: string | null;
+  date_of_birth: string | null;
   employer: string | null;
   post_held: string | null;
   issued_date: string | null;

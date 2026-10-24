@@ -1,69 +1,151 @@
 import type { PublicPermit, VerifiedPermit } from "@/lib/types";
 import { formatDate, statusClass } from "@/lib/format";
-import { publicDocumentUrl } from "@/lib/storage";
-import { permitPublicPath } from "@/lib/permalink";
+import { publicDocumentUrl, publicPhotoUrl } from "@/lib/storage";
 
-export function PublicPermitCard({
-  permit,
-  photoUrl,
-  showPermalink = true,
-}: {
-  permit: PublicPermit;
-  photoUrl?: string | null;
-  showPermalink?: boolean;
-}) {
+export function PublicPermitCard({ permit }: { permit: PublicPermit }) {
   const conditions = permit.conditions ?? [];
-  const documentUrl = publicDocumentUrl(permit.document_path);
-  const permalink = permitPublicPath(permit.permit_number);
+  const active = statusClass(permit.status) === "active";
+  const photoUrl = publicPhotoUrl(permit.photo_path);
   return (
-    <article className="public-permit-card">
-      <header>
-        <h2>{permit.authority}</h2>
-        <div>
-          <span>Permit Number: <strong>{permit.permit_number}</strong></span>
-          <span>Status: <strong className={`public-permit-status ${statusClass(permit.status)}`}>{permit.status}</strong></span>
-        </div>
-      </header>
-      <div className="public-permit-body">
-        <div className="public-permit-identity">
-          <div>
-            <div>Surname: <strong>{permit.surname}</strong></div>
-            <div>First Name: <strong>{permit.first_name}</strong></div>
-            <div>Nationality: <strong>{permit.nationality ?? "—"}</strong></div>
+    <div className="publicSearchContainer">
+        <div className="print-side-slider" aria-hidden="true">
+          <div className="slider-btn-up">
+            <svg viewBox="0 0 8 5" width="8" height="5">
+              <polygon points="4,0 8,5 0,5" fill="#717171" />
+            </svg>
           </div>
-          {photoUrl ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={photoUrl} alt={`${permit.first_name} ${permit.surname}`} />
-          ) : (
-            <div className="public-permit-photo-placeholder" aria-hidden="true">PHOTO</div>
-          )}
-        </div>
-        <div className="public-permit-details">
-          <div>Name of Employer: <strong>{permit.employer ?? "—"}</strong></div>
-          <div>Post Held: <strong>{permit.post_held ?? "—"}</strong></div>
-          <div className="public-permit-paired">
-            <div>Gender: <strong>{permit.gender ?? "—"}</strong></div>
-            <div>Validity: <strong>From {formatDate(permit.valid_from)} To {formatDate(permit.valid_to)}</strong></div>
+          <div className="slider-thumb" />
+          <div className="slider-track" />
+          <div className="slider-btn-down">
+            <svg viewBox="0 0 8 5" width="8" height="5">
+              <polygon points="0,0 8,0 4,5" fill="#717171" />
+            </svg>
           </div>
         </div>
-        {conditions.length > 0 && (
-          <div className="public-permit-conditions">
-            <strong>Conditions:</strong>
-            <ol>{conditions.map((c, i) => <li key={i}>{c}</li>)}</ol>
+        <div className="row infoPannel">
+          <div className="col-md-12">
+            <div className="panel panel-default">
+            <div className="panel-heading">
+              <div className="row">
+                <div className="col-md-12" style={{ textAlign: "center" }}>
+                  <p>{permit.authority}</p>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-8">
+                  <p> Permit Number: {permit.permit_number}</p>
+                </div>
+                <div className="col-md-4">
+                  <p>
+                    {" "}Status:{" "}
+                    <span
+                      className={active ? "status-active" : "status-inactive"}
+                      style={{ color: active ? "green" : "red" }}
+                    >
+                      {permit.status}
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <div>
+                      <span className="bold">Surname:</span>
+                      <span className="uppercase"> {permit.surname}</span>
+                    </div>
+                    {permit.first_name && (
+                      <div>
+                        <span className="bold">First Name:</span>
+                        <span className="capitalize"> {permit.first_name}</span>
+                      </div>
+                    )}
+                    <div>
+                      <span className="bold">Nationality:</span> {permit.nationality}
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      {photoUrl && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img className="passport-photo" src={photoUrl} alt="Passport photograph" />
+                      )}
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colSpan={2}>
+                    {permit.employer && (
+                      <div>
+                        <span className="bold">Name of Employer:</span> {permit.employer}
+                      </div>
+                    )}
+                    <div>
+                      <span className="bold">Post Held:</span> {permit.post_held}
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div>
+                      <span className="bold">Passport Number:</span> {permit.passport_number}
+                    </div>
+                    <div>
+                      <span className="bold">Gender:</span>{" "}
+                      <span className="capitalize">{permit.gender}</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <span className="bold">Date of Birth:</span>{" "}
+                      {formatDate(permit.date_of_birth)}
+                    </div>
+                    <div>
+                      <span className="bold">Validity: From </span>
+                      {formatDate(permit.valid_from)} <span className="bold">To </span>
+                      {formatDate(permit.valid_to)}
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div className="panel-body">
+              <div>
+                <span className="bold">Conditions:</span>
+              </div>
+              <ol type="1">
+                {conditions.map((condition, index) => (
+                  <li key={index}>{condition}</li>
+                ))}
+              </ol>
+            </div>
           </div>
-        )}
-        {(documentUrl || showPermalink) && (
-          <div className="public-permit-actions">
-            {documentUrl && (
-              <a className="primary-action" href={documentUrl} target="_blank" rel="noopener" style={{ marginRight: 12 }}>
-                Download permit (PDF)
-              </a>
-            )}
-            {showPermalink && <a className="secondary-action" href={permalink}>Permalink</a>}
-          </div>
-        )}
+        </div>
       </div>
-    </article>
+    </div>
+  );
+}
+
+export function PermitNotFoundPanel() {
+  return (
+    <div className="publicSearchContainer">
+      <div className="row infoPannel">
+        <div className="col-md-12">
+          <div className="panel panel-warning">
+            <div className="panel-heading">Permit not found</div>
+            <div className="panel-body">
+              <p>There is no record of a permit based on the information given.</p>
+              <p>
+                For more information about your licence state contact{" "}
+                <a href="mailto:nels@edbmauritius.org">nels@edbmauritius.org</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 

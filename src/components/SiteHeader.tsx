@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { LogoutButton } from "@/components/LogoutButton";
 import type { Profile } from "@/lib/types";
 
@@ -55,7 +55,10 @@ export function SiteHeader({ profile }: { profile: Profile | null }) {
                 onChange={(e) => setQuery(e.target.value)}
               />
               <button type="submit" aria-label="Search">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="5.5" /><path d="m15 15 5 5" /></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <circle cx="9.5" cy="9.5" r="5.5" strokeWidth="3" />
+                  <path d="M14 14l6.2 6.2" strokeWidth="4.2" />
+                </svg>
               </button>
             </form>
             {profile ? (
