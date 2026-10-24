@@ -543,8 +543,8 @@
     width: 100% !important;
     max-width: none !important;
     margin: 8px auto 0 auto !important;
-    padding: 8px 0 10px 0 !important;
-    background-color: #f5f5f5 !important;
+    padding: 0 !important;
+    background: transparent !important;
   }
 
   [data-site-footer] .footer-wrap {
@@ -556,7 +556,7 @@
     width: 100% !important;
     max-width: none !important;
     margin: 0 !important;
-    padding: 0 !important;
+    padding: 8px 0 10px 0 !important;
     background-color: #f5f5f5 !important;
     color: #000 !important;
     font-family: var(--font-roboto), "Roboto", Arial, Helvetica, sans-serif !important;
@@ -626,7 +626,8 @@
 
   [data-site-footer] .footer-bottom {
     margin-top: 5px !important;
-    padding-left: 20px !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
   }
 
   [data-site-footer] .helpdesk {
@@ -680,8 +681,8 @@
     justify-content: space-between !important;
     align-items: center !important;
     position: static !important;
-    margin-top: 6px !important;
-    padding-left: 20px !important;
+    margin-top: 22px !important;
+    padding-left: 0 !important;
     padding-right: 0 !important;
     font-size: 11px !important;
     font-family: Arial, Helvetica, sans-serif !important;

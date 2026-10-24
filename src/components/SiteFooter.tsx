@@ -74,12 +74,12 @@ export function SiteFooter({ verify = false }: { verify?: boolean }) {
               <strong>Security Notice:</strong> You are accessing the official website of the National E-Licensing portal at https://business.edbmauritius.org. Always verify the website address before entering your login details. Please report any suspicious link/message to <a href="mailto:nels@edbmauritius.org">nels@edbmauritius.org</a>.
             </p>
           </div>
-          <div className="print-page-footer" aria-hidden="true">
-            <span className="print-page-url">https://business.edbmauritius.org/wps/portal/business/home/searchpermits/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8zizY0cjTwdLQz8DZy...</span>
-            <span className="print-page-number">1/1</span>
-          </div>
         </div>
       </footer>
+      <div className="print-page-footer" aria-hidden="true">
+        <span className="print-page-url">https://business.edbmauritius.org/wps/portal/business/home/searchpermits/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8zizY0cjTwdLQz8DZy...</span>
+        <span className="print-page-number">1/1</span>
+      </div>
       {verify ? <MobileVerifyFooter /> : null}
     </div>
   );
