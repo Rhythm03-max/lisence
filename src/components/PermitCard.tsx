@@ -103,9 +103,11 @@ export function PublicPermitCard({ permit }: { permit: PublicPermit }) {
                       {formatDate(permit.date_of_birth)}
                     </div>
                     <div>
-                      <span className="bold">Validity: From </span>
-                      {formatDate(permit.valid_from)} <span className="bold">To </span>
-                      {formatDate(permit.valid_to)}
+                      <span className="validity-from-to" style={{ whiteSpace: "nowrap" }}>
+                        <span className="bold">Validity: From </span>
+                        {formatDate(permit.valid_from)} <span className="bold">To </span>
+                      </span>
+                      <span>{formatDate(permit.valid_to)}</span>
                     </div>
                   </td>
                 </tr>

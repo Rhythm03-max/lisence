@@ -80,7 +80,7 @@ export function SiteFooter({ verify = false }: { verify?: boolean }) {
         <span className="print-page-url">https://business.edbmauritius.org/wps/portal/business/home/searchpermits/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8zizY0cjTwdLQz8DZy...</span>
         <span className="print-page-number">1/1</span>
       </div>
-      {verify ? <MobileVerifyFooter /> : null}
+      <MobileVerifyFooter />
     </div>
   );
 }
